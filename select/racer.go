@@ -18,7 +18,7 @@ func ConfigurableRacer(a, b string, timeout time.Duration) (winner string, error
 		return a, nil
 	case <-Ping(b):
 		return b, nil
-	case <-time.After(10 * time.Second):
+	case <-time.After(timeout):
 		return "", fmt.Errorf("timed out waiting for %s and %s", a, b)
 	}
 }
