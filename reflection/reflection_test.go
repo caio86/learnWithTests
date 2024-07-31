@@ -20,7 +20,7 @@ func TestWalk(t *testing.T) {
 			[]string{"Chris"},
 		},
 		{
-			"struct with one string field",
+			"struct with two string field",
 			struct {
 				Name string
 				City string
