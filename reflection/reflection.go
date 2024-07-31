@@ -5,11 +5,7 @@ import (
 )
 
 func walk(x interface{}, fn func(string)) {
-	val := reflect.ValueOf(x)
-
-	if val.Kind() == reflect.Pointer {
-		val = val.Elem()
-	}
+	val := getValue(x)
 
 	for i := range val.NumField() {
 		field := val.Field(i)
@@ -21,4 +17,14 @@ func walk(x interface{}, fn func(string)) {
 			walk(field.Interface(), fn)
 		}
 	}
+}
+
+func getValue(x interface{}) reflect.Value {
+	val := reflect.ValueOf(x)
+
+	if val.Kind() == reflect.Pointer {
+		val = val.Elem()
+	}
+
+	return val
 }
